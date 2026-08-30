@@ -1,0 +1,507 @@
+@import "tailwindcss";
+
+/* Varian `dark:` mengikuti class pada elemen <html> */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* =========================================================
+   TOKEN TEMA — v7 "Aurora Neon"
+   Tema gelap premium dengan aksen neon multi-warna (RGB).
+   ========================================================= */
+@theme {
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  --color-canvas: #06070b;
+  --color-surface: #0d0f16;
+  --color-surface-soft: #131622;
+  --color-line: #232839;
+
+  --color-ink: #f5f6fa;
+  --color-ink-soft: #a6abbe;
+  --color-ink-muted: #6b7186;
+
+  --color-brand: #fb5a5e;
+  --color-brand-strong: #f43f5e;
+  --color-brand-soft: #2a1216;
+
+  --color-wa: #22c55e;
+  --color-wa-strong: #16a34a;
+
+  --color-tint-green: #0c2018;
+  --color-tint-blue: #0c1a2c;
+  --color-tint-amber: #241a0c;
+  --color-tint-violet: #1a1430;
+
+  --color-green: #34d399;
+  --color-blue: #38bdf8;
+  --color-amber: #fbbf24;
+  --color-violet: #a78bfa;
+
+  --color-cyan: #22d3ee;
+  --color-pink: #f472b6;
+}
+
+/* ---------- TEMA TERANG ---------- */
+html.light {
+  --color-canvas: #f7f8fc;
+  --color-surface: #ffffff;
+  --color-surface-soft: #eef1f8;
+  --color-line: #e1e6f0;
+
+  --color-ink: #1d2029;
+  --color-ink-soft: #5c6274;
+  --color-ink-muted: #949aab;
+
+  --color-brand: #ef4444;
+  --color-brand-strong: #dc2626;
+  --color-brand-soft: #fef1f2;
+
+  --color-wa: #10b981;
+  --color-wa-strong: #059669;
+
+  --color-tint-green: #ecfdf5;
+  --color-tint-blue: #eff6ff;
+  --color-tint-amber: #fffbeb;
+  --color-tint-violet: #f5f3ff;
+
+  --color-green: #059669;
+  --color-blue: #0284c7;
+  --color-amber: #b45309;
+  --color-violet: #6d28d9;
+
+  --color-cyan: #0891b2;
+  --color-pink: #db2777;
+}
+
+html {
+  color-scheme: dark;
+  scroll-behavior: smooth;
+}
+
+html.light {
+  color-scheme: light;
+}
+
+body {
+  background-color: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
+}
+
+::selection {
+  background-color: var(--color-brand);
+  color: #ffffff;
+}
+
+*:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 2px;
+}
+
+/* =========================================================
+   LATAR AURORA — cahaya RGB bergerak pelan di seluruh halaman.
+   Dipasang sekali di layout, posisi fixed, tidak ikut scroll.
+   ========================================================= */
+.aurora-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.aurora-orb {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(60px);
+  opacity: 0.55;
+  will-change: transform;
+}
+
+html.light .aurora-orb {
+  opacity: 0.35;
+  filter: blur(80px);
+}
+
+.aurora-orb-1 {
+  width: 22rem;
+  height: 22rem;
+  top: -8%;
+  left: -12%;
+  background: radial-gradient(circle at center, var(--color-brand), transparent 70%);
+  animation: orb-drift-1 22s ease-in-out infinite alternate;
+}
+
+.aurora-orb-2 {
+  width: 20rem;
+  height: 20rem;
+  top: 18%;
+  right: -14%;
+  background: radial-gradient(circle at center, var(--color-cyan), transparent 70%);
+  animation: orb-drift-2 26s ease-in-out infinite alternate;
+}
+
+.aurora-orb-3 {
+  width: 24rem;
+  height: 24rem;
+  bottom: -12%;
+  left: 12%;
+  background: radial-gradient(circle at center, var(--color-violet), transparent 70%);
+  animation: orb-drift-3 30s ease-in-out infinite alternate;
+}
+
+.aurora-orb-4 {
+  width: 15rem;
+  height: 15rem;
+  top: 55%;
+  left: 55%;
+  background: radial-gradient(circle at center, var(--color-amber), transparent 70%);
+  animation: orb-drift-1 34s ease-in-out infinite alternate-reverse;
+}
+
+@media (min-width: 1024px) {
+  .aurora-orb-1 { width: 34rem; height: 34rem; }
+  .aurora-orb-2 { width: 30rem; height: 30rem; }
+  .aurora-orb-3 { width: 38rem; height: 38rem; }
+  .aurora-orb-4 { width: 22rem; height: 22rem; }
+}
+
+@keyframes orb-drift-1 {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(12vw, 8vh) scale(1.15); }
+  100% { transform: translate(-6vw, 16vh) scale(0.95); }
+}
+
+@keyframes orb-drift-2 {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-14vw, 10vh) scale(1.2); }
+  100% { transform: translate(4vw, -12vh) scale(1.05); }
+}
+
+@keyframes orb-drift-3 {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(10vw, -12vh) scale(1.1); }
+  100% { transform: translate(-10vw, 6vh) scale(1.2); }
+}
+
+/* Grid halus di atas aurora, kesan "presisi" teknis */
+.aurora-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.03) 1px, transparent 1px);
+  background-size: 56px 56px;
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 100%);
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 100%);
+}
+
+html.light .aurora-grid {
+  background-image:
+    linear-gradient(to right, rgb(15 23 42 / 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(15 23 42 / 0.05) 1px, transparent 1px);
+}
+
+/* =========================================================
+   KOMPONEN UTILITAS
+   ========================================================= */
+
+/* Kartu kaca (glassmorphism) yang dipakai di seluruh halaman */
+.soft-card {
+  background: color-mix(in srgb, var(--color-surface) 78%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-line) 80%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow:
+    0 1px 2px rgb(0 0 0 / 0.25),
+    0 12px 32px rgb(0 0 0 / 0.25),
+    inset 0 1px 0 rgb(255 255 255 / 0.04);
+}
+
+html.light .soft-card {
+  background: color-mix(in srgb, #ffffff 85%, transparent);
+  box-shadow:
+    0 1px 2px rgb(44 44 43 / 0.04),
+    0 10px 30px rgb(44 44 43 / 0.06),
+    inset 0 1px 0 rgb(255 255 255 / 0.8);
+}
+
+/* Border RGB berputar — dipakai untuk elemen unggulan (hero, CTA) */
+@property --rgb-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.rgb-frame {
+  position: relative;
+  border: 1px solid transparent;
+  background:
+    linear-gradient(var(--color-surface), var(--color-surface)) padding-box,
+    conic-gradient(
+        from var(--rgb-angle),
+        var(--color-brand),
+        var(--color-amber),
+        var(--color-cyan),
+        var(--color-violet),
+        var(--color-pink),
+        var(--color-brand)
+      )
+      border-box;
+  animation: rgb-spin 7s linear infinite;
+}
+
+@keyframes rgb-spin {
+  to {
+    --rgb-angle: 360deg;
+  }
+}
+
+/* Cahaya lembut di bawah elemen penting */
+.glow-brand {
+  box-shadow: 0 0 24px color-mix(in srgb, var(--color-brand) 35%, transparent);
+}
+
+/* Galeri foto yang bisa digeser */
+.slider-snap {
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.slider-snap > * {
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Scrollbar halaman */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-canvas);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-line);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-ink-muted);
+}
+
+/* =========================================================
+   ANIMASI
+   ========================================================= */
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-24px) scale(1.04);
+  }
+}
+
+@keyframes bounce-soft {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(6px);
+    opacity: 1;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-float {
+  animation: float 5s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: float-slow 9s ease-in-out infinite;
+}
+
+.animate-bounce-soft {
+  animation: bounce-soft 2s ease-in-out infinite;
+}
+
+/* ---------- TESTIMONI BERJALAN (kanan ke kiri) ---------- */
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    /* Daftar digandakan, jadi -50% = tepat satu putaran penuh */
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee var(--marquee-duration, 34s) linear infinite;
+  will-change: transform;
+}
+
+/* Berhenti saat disentuh / diarahkan kursor supaya bisa dibaca */
+.marquee-pause:hover .animate-marquee,
+.marquee-pause:active .animate-marquee,
+.marquee-pause:focus-within .animate-marquee {
+  animation-play-state: paused;
+}
+
+/* Tepi kiri dan kanan memudar agar perpindahan terlihat mulus */
+.marquee-mask {
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 5%,
+    #000 95%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 5%,
+    #000 95%,
+    transparent
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation: none;
+  }
+}
+
+/* =========================================================
+   TEKS GRADIEN
+   ========================================================= */
+
+/* Judul dengan kilau warna brand (dipakai di beberapa section) */
+.text-shine {
+  background: linear-gradient(
+    110deg,
+    var(--color-brand) 20%,
+    #ffb199 40%,
+    var(--color-brand) 60%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 4s linear infinite;
+}
+
+html.light .text-shine {
+  background: linear-gradient(
+    110deg,
+    var(--color-brand-strong) 20%,
+    #ff8a70 40%,
+    var(--color-brand-strong) 60%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Teks gradien RGB penuh — merah > kuning > cyan > ungu, bergeser pelan */
+.text-rgb {
+  background: linear-gradient(
+    90deg,
+    var(--color-brand),
+    var(--color-amber),
+    var(--color-cyan),
+    var(--color-violet),
+    var(--color-pink),
+    var(--color-brand)
+  );
+  background-size: 300% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rgb-text-slide 7s linear infinite;
+}
+
+@keyframes rgb-text-slide {
+  to {
+    background-position: 300% center;
+  }
+}
+
+/* Lenis smooth scroll */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
