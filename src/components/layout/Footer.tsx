@@ -48,35 +48,32 @@ export default function Footer({ settings }: FooterProps) {
         aria-hidden="true"
         className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-brand to-transparent"
       />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
-          {/* Brand */}
-          <div>
-            <div className="flex items-center gap-3 mb-4">
-              <div className="relative w-12 h-12 rounded-full overflow-hidden ring-2 ring-brand/60 shadow-[0_0_16px_-2px] shadow-brand/50">
-                <Image
-                  src="/images/logo.jpeg"
-                  alt="Logo Duta Motor"
-                  fill
-                  sizes="48px"
-                  className="object-cover"
-                />
-              </div>
-              <div>
-                <p className="font-extrabold text-ink text-sm leading-tight">
-                  DUTA
-                </p>
-                <p className="text-[10px] text-brand font-bold tracking-widest uppercase leading-tight">
-                  MOTOR
-                </p>
-              </div>
-            </div>
-            <p className="text-sm text-ink-soft leading-relaxed">
-              Jual beli mobil bekas berkualitas di {settings.locationFull}.
-              Temukan mobil impian Anda dengan harga terjangkau.
-            </p>
-          </div>
-
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+    {/* Brand */}
+    <div>
+      <div className="flex items-center gap-3 mb-4">
+        <Image
+          src="/images/logo.png"
+          alt="Logo Duta Motor"
+          width={512}
+          height={512}
+          className="h-16 lg:h-20 w-auto object-contain transition-[filter] duration-300 dark:[filter:drop-shadow(0_0_1px_rgba(255,255,255,0.95))_drop-shadow(0_0_4px_rgba(255,255,255,0.45))]"
+        />
+        <div>
+          <p className="font-extrabold text-ink text-base leading-tight">
+            DUTA
+          </p>
+          <p className="text-[11px] text-brand font-bold tracking-widest uppercase leading-tight">
+            MOTOR
+          </p>
+        </div>
+      </div>
+      <p className="text-sm text-ink-soft leading-relaxed">
+        Jual beli mobil bekas berkualitas di {settings.locationFull}.
+        Temukan mobil impian Anda dengan harga terjangkau.
+      </p>
+    </div>
           {/* Navigasi */}
           <div>
             <h3 className="text-ink font-bold text-sm mb-4 uppercase tracking-wider">
