@@ -49,7 +49,7 @@ export default function Testimonials() {
       </div>
 
       <p className="text-center text-xs text-ink-muted mt-4 px-4">
-        Sentuh salah satu kartu untuk berhenti sejenak dan membacanya.
+        
       </p>
     </section>
   );
